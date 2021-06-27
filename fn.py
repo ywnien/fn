@@ -125,7 +125,7 @@ memory_system = ConditionalContainer(
         read_only=False,
         scrollbar=True,
         search_field=search_bar,
-        lexer=NumLexer(),
+        #lexer=NumLexer(),
         width=D(weight=1)
     ),
     filter=memory_system_filter
