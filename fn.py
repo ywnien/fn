@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import json
+from pathlib import Path
 
 from prompt_toolkit.application import Application
 from prompt_toolkit.filters import Condition
@@ -15,20 +16,22 @@ from prompt_toolkit.widgets import SearchToolbar, TextArea
 from fn.lexer import NumLexer
 
 
+script_dir = str(Path(__file__).parent)
+
 # Load or create bookmark
 try:
-    with open("json/bookmark.json", "r") as f:
+    with open(f"{script_dir}/json/bookmark.json", "r") as f:
         bookmark = json.load(f)
 except FileNotFoundError:
     bookmark = {
         "book": 0,
         "chapter": 0,
     }
-    with open("json/bookmark.json", "w") as f:
+    with open(f"{script_dir}/json/bookmark.json", "w") as f:
         json.dump(bookmark, f, indent=4)
 
 # Read bible
-with open("json/CUV.json", "r") as f:
+with open(f"{script_dir}/json/CUV.json", "r") as f:
     cuv = json.load(f)
 
 
@@ -234,7 +237,7 @@ def main():
     bookmark["book"] = now._book
     bookmark["chapter"] = now._chapter
 
-    with open("json/bookmark.json", "w") as f:
+    with open(f"{script_dir}/json/bookmark.json", "w") as f:
         json.dump(bookmark, f, indent=4)
 
 
